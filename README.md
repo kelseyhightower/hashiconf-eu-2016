@@ -75,6 +75,12 @@ nomad run jobs/consul.nomad
 consul join nc-1 nc-2 nc-3 nc-4 nc-5
 ```
 
+### Secret Automation
+
+```
+vault write secret/hashiapp jwtsecret=secret
+```
+
 ### Database Automation
 
 Use vault to manage per application instance database creds.
@@ -88,7 +94,7 @@ vault mount mysql
 
 ```
 vault write mysql/config/connection \
-> connection_url="DATABASE_USERNAME:DATABASE_PASSWORD@tcp(DATABASE_HOST)/"
+> connection_url="USERNAME:PASSWORD@tcp(HOST:PORT)/"
 ```
 
 ```
