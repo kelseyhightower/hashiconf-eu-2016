@@ -75,4 +75,23 @@ nomad run jobs/consul.nomad
 consul join nc-1 nc-2 nc-3 nc-4 nc-5
 ```
 
+### Database Automation
 
+Use vault to manage per application instance database creds.
+
+https://www.vaultproject.io/docs/secrets/mysql/index.html
+
+
+```
+vault mount mysql
+```
+
+```
+vault write mysql/config/connection \
+> connection_url="DATABASE_USERNAME:DATABASE_PASSWORD@tcp(DATABASE_HOST)/"
+```
+
+```
+vault write mysql/roles/hashiapp \
+  sql="CREATE USER '{{name}}'@'%' IDENTIFIED BY '{{password}}';GRANT ALL PRIVILEGES ON hashiapp.* TO '{{name}}'@'%';"
+```

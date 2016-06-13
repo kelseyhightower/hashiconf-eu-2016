@@ -27,9 +27,7 @@ job "hashiapp" {
         memory = 64
         network {
           mbits = 100
-
-          port "http" {
-          }
+          port "http" {}
         }
       }
 
@@ -37,6 +35,13 @@ job "hashiapp" {
         name = "hashiapp"
         tags = ["hashiapp"]
         port = "http"
+        check {
+          type = "http"
+          name = "healthz"
+          interval = 15
+          timeout = 3
+          path = "/healthz"
+        }
       }
     }
   }
