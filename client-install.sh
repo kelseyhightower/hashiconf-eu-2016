@@ -1,5 +1,8 @@
 #!/bin/bash
 
+export IP_ADDRESS=$(curl -s -H "Metadata-Flavor: Google" \
+  http://metadata.google.internal/computeMetadata/v1/instance/network-interfaces/0/ip)
+
 apt-get update
 apt-get install -y unzip
 
@@ -13,7 +16,16 @@ mkdir -p /etc/nomad
 rm nomad_0.3.2_linux_amd64.zip
 
 cat > client.hcl <<EOF
-bind_addr = "0.0.0.0"
+addresses {
+    rpc  = "ADVERTISE_ADDR"
+    http = "ADVERTISE_ADDR"
+}
+
+advertise {
+    http = "ADVERTISE_ADDR:4646"
+    rpc  = "ADVERTISE_ADDR:4647"
+}
+
 data_dir  = "/var/lib/nomad"
 log_level = "DEBUG"
 
@@ -27,6 +39,7 @@ client {
     }
 }
 EOF
+sed -i "s/ADVERTISE_ADDR/${IP_ADDRESS}/" client.hcl
 mv client.hcl /etc/nomad/client.hcl
 
 cat > nomad.service <<'EOF'
