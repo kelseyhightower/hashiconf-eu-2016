@@ -18,6 +18,15 @@ gcloud sql instances set-root-password hashiapp \
 gcloud sql instances describe hashiapp
 ```
 
+```
+mysql -u root -h <database-ip> -p
+Enter password: 
+```
+
+```
+mysql> CREATE DATABASE hashiapp;
+```
+
 ## Bootstrap a Nomad Cluster
 
 This step will also install Nomad, Consul, and Vault.
