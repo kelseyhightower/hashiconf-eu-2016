@@ -2,6 +2,6 @@ path "secret/hashiapp" {
   capabilities = ["read", "list"]
 }
 
-path "mysql/roles/hashiapp" {
+path "mysql/creds/hashiapp" {
   capabilities = ["read", "list"]
 }
