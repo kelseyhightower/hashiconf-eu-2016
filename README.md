@@ -114,14 +114,26 @@ gcloud compute instances create nc-1 nc-2 nc-3 nc-4 nc-5 \
  --metadata-from-file startup-script=client-install.sh
 ```
 
+```
+nomad node-status
+```
+```
+ID        DC   Name  Class   Drain  Status
+ec906293  dc1  nc-5  <none>  false  ready
+eb73ef71  dc1  nc-2  <none>  false  ready
+a2328a47  dc1  nc-1  <none>  false  ready
+537709ec  dc1  nc-3  <none>  false  ready
+4e0a6bcb  dc1  nc-4  <none>  false  ready
+```
+
 ## Service Discovery with Consul
 
 ```
-nomad run jobs/consul.nomad
+gcloud compute ssh ns-1
 ```
 
 ```
-gcloud compute ssh ns-1
+nomad run jobs/consul.nomad
 ```
 
 ```
