@@ -1,6 +1,5 @@
 job "consul" {
   datacenters = ["dc1"]
-
   type = "system"
   update {
     stagger = "30s"

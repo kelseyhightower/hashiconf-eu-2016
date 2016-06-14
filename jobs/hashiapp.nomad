@@ -1,5 +1,6 @@
 job "hashiapp" {
   datacenters = ["dc1"]
+  type = "service"
 
   update {
     stagger = "30s"
@@ -15,10 +16,16 @@ job "hashiapp" {
         command = "hashiapp"
       }
 
+      env {
+        VAULT_TOKEN = ""
+        VAULT_ADDR = ""
+        HASHIAPP_DB_HOST = ""
+      }
+
       artifact {
-        source = "https://storage.googleapis.com/hightowerlabs/hashiapp"
+        source = "https://storage.googleapis.com/hashistack/hashiapp/v1.0.0/hashiapp"
         options {
-          checksum = "sha256:b455f911778403d53b525e9f72e39fa47120030393ef2a78a9f4510084215af1"
+          checksum = "sha256:a58ee8c9eb38f2ce45edfbd71547cc66dcb68464b901fe8c89675ad2e12d2135"
         }
       }
 
@@ -33,13 +40,13 @@ job "hashiapp" {
 
       service {
         name = "hashiapp"
-        tags = ["hashiapp"]
+        tags = ["urlprefix-/hashiapp"]
         port = "http"
         check {
           type = "http"
           name = "healthz"
-          interval = 15
-          timeout = 3
+          interval = "15s"
+          timeout = "5s"
           path = "/healthz"
         }
       }
