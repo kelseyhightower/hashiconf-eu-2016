@@ -145,12 +145,12 @@ vault write mysql/roles/hashiapp \
 
 ```
 gcloud compute instances create nc-1 nc-2 nc-3 nc-4 nc-5 \
- --image-project ubuntu-os-cloud \
- --image ubuntu-1604-xenial-v20160516a \
- --boot-disk-size 200GB \
- --machine-type n1-standard-2 \
- --can-ip-forward \
- --metadata-from-file startup-script=client-install.sh
+  --image-project ubuntu-os-cloud \
+  --image ubuntu-1604-xenial-v20160516a \
+  --boot-disk-size 200GB \
+  --machine-type n1-standard-2 \
+  --can-ip-forward \
+  --metadata-from-file startup-script=client-install.sh
 ```
 
 ```
