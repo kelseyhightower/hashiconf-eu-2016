@@ -24,6 +24,10 @@ gcloud compute ssh ns-1
 nomad server-join ns-2 ns-3
 ```
 
+```
+nomad status
+```
+
 ### Provision the Consul Cluster
 
 ```
@@ -32,6 +36,14 @@ gcloud compute ssh ns-1
 
 ```
 consul join ns-2 ns-3
+```
+
+```
+$ consul members
+Node  Address          Status  Type    Build  Protocol  DC
+ns-1  10.240.0.4:8301  alive   server  0.6.4  2         dc1
+ns-2  10.240.0.3:8301  alive   server  0.6.4  2         dc1
+ns-3  10.240.0.2:8301  alive   server  0.6.4  2         dc1
 ```
 
 ### Provison Vault
@@ -52,6 +64,10 @@ Consider creating a vault policy and setting up ACLs.
 
 ```
 vault unseal
+```
+
+```
+vault auth <root-token>
 ```
 
 #### Configure the MySQL Secret Backend
