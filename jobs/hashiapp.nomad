@@ -3,7 +3,7 @@ job "hashiapp" {
   type = "service"
 
   update {
-    stagger = "30s"
+    stagger = "5s"
     max_parallel = 1
   }
 
@@ -40,7 +40,7 @@ job "hashiapp" {
 
       service {
         name = "hashiapp"
-        tags = ["urlprefix-/hashiapp"]
+        tags = ["urlprefix-hashiapp.com/"]
         port = "http"
         check {
           type = "http"

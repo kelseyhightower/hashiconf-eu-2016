@@ -106,6 +106,35 @@ nomad run jobs/fabio.nomad
 nomad status fabio
 ```
 
+```
+gcloud compute addresses create hashistack-lb
+```
+
+```
+gcloud compute http-health-checks create hashistack
+```
+
+```
+gcloud compute target-pools create hashistack \
+  --health-check hashistack
+```
+
+```
+gcloud compute target-pools add-instances hashistack \
+  --instances nc-1,nc-2,nc-3,nc-4,nc-5
+```
+
+```
+gcloud compute addresses list
+```
+
+```
+gcloud compute forwarding-rules create hashistack \
+  --port-range 9998-9999 \
+  --address STATIC_EXTERNAL_IP \
+  --target-pool hashistack
+```
+
 ## Hashiapp Job
 
 Create the JWT Secret in vault.
