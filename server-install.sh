@@ -4,16 +4,16 @@ export IP_ADDRESS=$(curl -s -H "Metadata-Flavor: Google" \
   http://metadata.google.internal/computeMetadata/v1/instance/network-interfaces/0/ip)
 
 apt-get update
-apt-get install -y unzip
+apt-get install -y unzip dnsmasq
 
-wget https://releases.hashicorp.com/nomad/0.3.2/nomad_0.3.2_linux_amd64.zip
-unzip nomad_0.3.2_linux_amd64.zip
+wget https://releases.hashicorp.com/nomad/0.4.0-rc1/nomad_0.4.0-rc1_linux_amd64.zip
+unzip nomad_0.4.0-rc1_linux_amd64.zip
 mv nomad /usr/local/bin/
 
 mkdir -p /var/lib/nomad
 mkdir -p /etc/nomad
 
-rm nomad_0.3.2_linux_amd64.zip
+rm nomad_0.4.0-rc1_linux_amd64.zip
 
 cat > server.hcl <<EOF
 addresses {
@@ -95,10 +95,10 @@ systemctl start consul
 
 ## Setup Vault
 
-wget https://releases.hashicorp.com/vault/0.5.3/vault_0.5.3_linux_amd64.zip
-unzip vault_0.5.3_linux_amd64.zip
+wget https://releases.hashicorp.com/vault/0.6.0/vault_0.6.0_linux_amd64.zip
+unzip vault_0.6.0_linux_amd64.zip
 mv vault /usr/local/bin/vault
-rm vault_0.5.3_linux_amd64.zip
+rm vault_0.6.0_linux_amd64.zip
 
 mkdir -p /etc/vault
 
@@ -135,3 +135,13 @@ EOF
 
 systemctl enable vault
 systemctl start vault
+
+## Setup dnsmasq
+
+mkdir -p /etc/dnsmasq.d
+cat > /etc/dnsmasq.d/10-consul <<'EOF'
+server=/consul/127.0.0.1#8600
+EOF
+
+systemctl enable dnsmasq
+systemctl start dnsmasq

@@ -2,7 +2,7 @@ job "consul" {
   datacenters = ["dc1"]
   type = "system"
   update {
-    stagger = "30s"
+    stagger = "10s"
     max_parallel = 1
   }
 
@@ -25,7 +25,7 @@ job "consul" {
         cpu = 500
         memory = 64
         network {
-          mbits = 100
+          mbits = 1
 
           port "server" {
             static = 8300

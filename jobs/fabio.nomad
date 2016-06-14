@@ -24,7 +24,7 @@ job "fabio" {
         cpu = 500
         memory = 64
         network {
-          mbits = 100
+          mbits = 1
 
           port "http" {
             static = 9999

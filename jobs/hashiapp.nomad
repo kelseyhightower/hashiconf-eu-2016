@@ -33,7 +33,7 @@ job "hashiapp" {
         cpu = 500
         memory = 64
         network {
-          mbits = 100
+          mbits = 1
           port "http" {}
         }
       }
