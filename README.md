@@ -202,6 +202,12 @@ gcloud compute forwarding-rules create hashistack \
   --target-pool hashistack
 ```
 
+```
+gcloud compute firewall-rules create fabio \
+  --allow tcp:9998-9999 \
+  --source-range 0.0.0.0/0
+```
+
 ## Hashiapp Job
 
 Submit the hashiapp service job.
