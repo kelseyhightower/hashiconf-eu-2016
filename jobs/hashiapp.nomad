@@ -17,9 +17,9 @@ job "hashiapp" {
       }
 
       env {
-        VAULT_TOKEN = ""
+        VAULT_TOKEN = "HASHIAPP_TOKEN"
         VAULT_ADDR = "http://vault.service.consul:8200"
-        HASHIAPP_DB_HOST = "mysql.service.consul:3306"
+        HASHIAPP_DB_HOST = "CLOUD_SQL:3306"
       }
 
       artifact {

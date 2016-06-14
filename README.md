@@ -154,6 +154,10 @@ vault write mysql/roles/hashiapp \
   sql="CREATE USER '{{name}}'@'%' IDENTIFIED BY '{{password}}';GRANT ALL PRIVILEGES ON hashiapp.* TO '{{name}}'@'%';"
 ```
 
+```
+sed -i "s/CLOUD_SQL/<cloud-sql-ip>/" jobs/hashiapp.nomad
+```
+
 ### Bootstrap Nomad Worker Nodes
 
 ```
