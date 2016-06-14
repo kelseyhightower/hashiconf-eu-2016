@@ -130,6 +130,8 @@ a2328a47  dc1  nc-1  <none>  false  ready
 
 ## Service Discovery with Consul
 
+![Consul web UI](images/consul-hashistack.png)
+
 ```
 gcloud compute ssh ns-1
 ```
