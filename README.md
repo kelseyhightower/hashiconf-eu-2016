@@ -270,7 +270,8 @@ nomad status hashiapp
 ### Viewing Logs
 
 ```
-nomad fs cat <hashiapp-alloc-id> alloc/logs/hashiapp.stdout.0
+nomad fs -job hashiapp alloc/logs/hashiapp.stderr.0
+nomad fs -job hashiapp alloc/logs/hashiapp.stdout.0
 ```
 
 ### Send Traffic
