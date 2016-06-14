@@ -32,11 +32,19 @@ gcloud compute instances create ns-1 ns-2 ns-3 \
  --metadata-from-file startup-script=server-install.sh
 ```
 
-### Provision the Nomad Cluster
-
 ```
 gcloud compute ssh ns-1
 ```
+
+```
+git clone https://github.com/kelseyhightower/hashiconf-eu-2016.git
+```
+```
+cd hashiconf-eu-2016
+```
+
+
+### Provision the Nomad Cluster
 
 ```
 nomad server-join ns-2 ns-3
@@ -69,10 +77,6 @@ ns-3  10.240.0.2:8301  alive   server  0.6.4  2         dc1
 ### Provison Vault
 
 ```
-gcloud compute ssh ns-1
-```
-
-```
 export VAULT_ADDR=http://127.0.0.1:8200
 ```
 
@@ -80,15 +84,30 @@ export VAULT_ADDR=http://127.0.0.1:8200
 vault init
 ```
 
+#### Unseal Vault
+
 ```
 vault unseal
 ```
+```
+vault status
+```
+```
+Sealed: false
+Key Shares: 5
+Key Threshold: 3
+Unseal Progress: 0
+
+High-Availability Enabled: true
+	Mode: active
+	Leader: http://10.240.0.2:8200
+```
+
+#### Create the Hashiapp Policy and Token
 
 ```
 vault auth <root-token>
 ```
-
-#### Create the Hashiapp Policy and Token
 
 ```
 vault policy-write hashiapp vault/hashiapp-policy.hcl
