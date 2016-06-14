@@ -60,14 +60,30 @@ export VAULT_ADDR=http://127.0.0.1:8200
 vault init
 ```
 
-Consider creating a vault policy and setting up ACLs.
-
 ```
 vault unseal
 ```
 
 ```
 vault auth <root-token>
+```
+
+#### Create the Hashiapp Policy and Token
+
+```
+vault policy-write hashiapp vault/hashiapp-policy.hcl
+```
+
+```
+vault token-create \
+  -policy="hashiapp" \
+  -display-name="hashiapp"
+```
+
+#### Create the Hashiapp Secret
+
+```
+vault write secret/hashiapp jwtsecret=secret
 ```
 
 #### Configure the MySQL Secret Backend
@@ -152,12 +168,6 @@ gcloud compute forwarding-rules create hashistack \
 ```
 
 ## Hashiapp Job
-
-Create the JWT Secret in vault.
-
-```
-vault write secret/hashiapp jwtsecret=secret
-```
 
 Submit the hashiapp service job.
 
