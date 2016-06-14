@@ -137,7 +137,24 @@ nomad run jobs/consul.nomad
 ```
 
 ```
+nomad status consul
+```
+
+```
 consul join nc-1 nc-2 nc-3 nc-4 nc-5
+```
+
+```
+consul members
+Node  Address          Status  Type    Build  Protocol  DC
+nc-1  10.240.0.8:8301  alive   client  0.6.4  2         dc1
+nc-2  10.240.0.9:8301  alive   client  0.6.4  2         dc1
+nc-3  10.240.0.6:8301  alive   client  0.6.4  2         dc1
+nc-4  10.240.0.7:8301  alive   client  0.6.4  2         dc1
+nc-5  10.240.0.5:8301  alive   client  0.6.4  2         dc1
+ns-1  10.240.0.4:8301  alive   server  0.6.4  2         dc1
+ns-2  10.240.0.3:8301  alive   server  0.6.4  2         dc1
+ns-3  10.240.0.2:8301  alive   server  0.6.4  2         dc1
 ```
 
 ## Load Balancing with Fabio
