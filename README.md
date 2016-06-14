@@ -86,7 +86,7 @@ ns-3  10.240.0.2:8301  alive   server  0.6.4  2         dc1
 ### Provison Vault
 
 ```
-export VAULT_ADDR=http://127.0.0.1:8200
+export VAULT_ADDR=http://ns-1:8200
 ```
 
 ```
