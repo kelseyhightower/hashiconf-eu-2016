@@ -36,7 +36,7 @@ gcloud compute instances create ns-1 ns-2 ns-3 \
   --image-project ubuntu-os-cloud \
   --image ubuntu-1604-xenial-v20160516a \
   --boot-disk-size 200GB \
-  --machine-type n1-standard-1 \
+  --machine-type n1-standard-2 \
   --can-ip-forward \
   --metadata-from-file startup-script=server-install.sh
 ```
