@@ -8,7 +8,7 @@ job "hashiapp" {
   }
 
   group "hashiapp" {
-    count = 8
+    count = 3
 
     task "hashiapp" {
       driver = "exec"
@@ -18,8 +18,8 @@ job "hashiapp" {
 
       env {
         VAULT_TOKEN = ""
-        VAULT_ADDR = ""
-        HASHIAPP_DB_HOST = ""
+        VAULT_ADDR = "http://vault.service.consul:8200"
+        HASHIAPP_DB_HOST = "mysql.service.consul:3306"
       }
 
       artifact {

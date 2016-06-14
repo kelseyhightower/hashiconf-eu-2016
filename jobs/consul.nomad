@@ -2,7 +2,7 @@ job "consul" {
   datacenters = ["dc1"]
   type = "system"
   update {
-    stagger = "10s"
+    stagger = "5s"
     max_parallel = 1
   }
 
