@@ -163,6 +163,8 @@ ns-3  10.240.0.2:8301  alive   server  0.6.4  2         dc1
 
 ## Load Balancing with Fabio
 
+![Fabio web UI](images/fabio-hashistack.png)
+
 ```
 nomad run jobs/fabio.nomad
 ```
