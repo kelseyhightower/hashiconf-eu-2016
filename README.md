@@ -119,6 +119,10 @@ vault token-create \
   -display-name="hashiapp"
 ```
 
+```
+sed -i "s/HASHIAPP_TOKEN/<hashiapp-token>/" jobs/hashiapp.nomad 
+```
+
 #### Create the Hashiapp Secret
 
 ```
