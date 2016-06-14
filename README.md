@@ -219,7 +219,9 @@ gcloud compute addresses create hashistack
 ```
 
 ```
-gcloud compute http-health-checks create hashistack
+gcloud compute http-health-checks create hashistack \
+  --port 9998 \
+  --request-path "/health"
 ```
 
 ```
