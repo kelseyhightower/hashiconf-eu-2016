@@ -225,3 +225,9 @@ nomad status hashiapp
 ```
 nomad fs cat <hashiapp-alloc-id> alloc/logs/hashiapp.stdout.0
 ```
+
+### Send Traffic
+
+```
+curl -H "Host: hashiapp.com" http://<loadbalancer-ip>:9999/version
+```
