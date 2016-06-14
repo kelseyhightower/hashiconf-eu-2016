@@ -39,7 +39,9 @@ consul join ns-2 ns-3
 ```
 
 ```
-$ consul members
+consul members
+```
+```
 Node  Address          Status  Type    Build  Protocol  DC
 ns-1  10.240.0.4:8301  alive   server  0.6.4  2         dc1
 ns-2  10.240.0.3:8301  alive   server  0.6.4  2         dc1
@@ -146,6 +148,8 @@ consul join nc-1 nc-2 nc-3 nc-4 nc-5
 
 ```
 consul members
+```
+```
 Node  Address          Status  Type    Build  Protocol  DC
 nc-1  10.240.0.8:8301  alive   client  0.6.4  2         dc1
 nc-2  10.240.0.9:8301  alive   client  0.6.4  2         dc1
@@ -167,8 +171,10 @@ nomad run jobs/fabio.nomad
 nomad status fabio
 ```
 
+### Create L3 LoadBalancer
+
 ```
-gcloud compute addresses create hashistack-lb
+gcloud compute addresses create hashistack
 ```
 
 ```
