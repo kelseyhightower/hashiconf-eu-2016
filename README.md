@@ -1,5 +1,23 @@
 # HashiConf EU 2016
 
+## Provision MySQL
+
+```
+gcloud sql instances create hashiapp \
+  --tier db-n1-standard-1 \
+  --activation-policy ALWAYS \
+  --authorized-networks 0.0.0.0/0
+```
+
+```
+gcloud sql instances set-root-password hashiapp \
+  --password <password>
+```
+
+```
+gcloud sql instances describe hashiapp
+```
+
 ## Bootstrap a Nomad Cluster
 
 This step will also install Nomad, Consul, and Vault.
