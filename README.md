@@ -101,11 +101,24 @@ curl -H "Host: hashiapp.com" http://<loadbalancer-ip>:9999/version
 
 ### Scaling Up
 
+Edit `jobs/hashiapp.nomad`
+
+```
+count = 5
+```
+
 ```
 nomad run jobs/hashiapp.nomad
 ```
 
 ### Rolling Upgrades
+
+Edit `jobs/hashiapp.nomad`
+
+```
+source = "https://storage.googleapis.com/hashistack/hashiapp/v2.0.0/hashiapp"
+checksum = "sha256:372ddaeb9ac97a2eecd7dd3307bd32f8b0c188d47239f7ef6790609f9a157ca4"
+```
 
 ```
 nomad run jobs/hashiapp.nomad
