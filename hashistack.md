@@ -55,7 +55,7 @@ nomad server-join ns-2 ns-3
 nomad status
 ```
 
-Complete the setup of the consul cluster.
+### Complete the setup of the consul cluster
 
 ```
 consul join ns-2 ns-3
@@ -65,7 +65,7 @@ consul join ns-2 ns-3
 consul members
 ```
 
-Complete the setup of the vault cluster.
+### Complete the setup of the vault cluster
 
 ```
 export VAULT_ADDR=http://ns-1:8200
