@@ -3,7 +3,7 @@ job "hashiapp" {
   type = "service"
 
   update {
-    stagger = "5s"
+    stagger = "10s"
     max_parallel = 1
   }
 
