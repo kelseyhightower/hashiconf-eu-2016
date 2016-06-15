@@ -30,11 +30,14 @@ vault token-create \
   -display-name="hashiapp"
 ```
 
+Edit `jobs/hashiapp.nomad` job
+
 ```
-sed -i "s/HASHIAPP_TOKEN/<hashiapp-token>/" jobs/hashiapp.nomad 
-```
-```
-sed -i "s/CLOUD_SQL/<cloud-sql-ip>/" jobs/hashiapp.nomad
+env {
+  VAULT_TOKEN = "HASHIAPP_TOKEN"
+  VAULT_ADDR = "http://vault.service.consul:8200"
+  HASHIAPP_DB_HOST = "CLOUD_SQL:3306"
+}
 ```
 
 ### Create the Hashiapp Secret
