@@ -119,3 +119,42 @@ gcloud compute ssh ns-1
 ```
 nomad node-status
 ```
+
+## Create L3 LoadBalancer
+
+```
+gcloud compute addresses create hashistack
+```
+
+```
+gcloud compute http-health-checks create hashistack \
+  --port 9998 \
+  --request-path "/health"
+```
+
+```
+gcloud compute target-pools create hashistack \
+  --health-check hashistack
+```
+
+```
+gcloud compute target-pools add-instances hashistack \
+  --instances nc-1,nc-2,nc-3,nc-4,nc-5
+```
+
+```
+gcloud compute addresses list
+```
+
+```
+gcloud compute forwarding-rules create hashistack \
+  --port-range 9999 \
+  --address STATIC_EXTERNAL_IP \
+  --target-pool hashistack
+```
+
+```
+gcloud compute firewall-rules create fabio \
+  --allow tcp:9999 \
+  --source-range 0.0.0.0/0
+```
