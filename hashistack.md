@@ -41,7 +41,11 @@ gcloud compute instances create ns-1 ns-2 ns-3 \
   --metadata-from-file startup-script=server-install.sh
 ```
 
-### Provision the Nomad Cluster
+Complete the setup of the nomad cluser.
+
+```
+gcloud compute ssh ns-1
+```
 
 ```
 nomad server-join ns-2 ns-3
@@ -51,7 +55,7 @@ nomad server-join ns-2 ns-3
 nomad status
 ```
 
-### Provision the Consul Cluster
+Complete the setup of the consul cluster.
 
 ```
 consul join ns-2 ns-3
@@ -61,7 +65,7 @@ consul join ns-2 ns-3
 consul members
 ```
 
-### Provison Vault
+Complete the setup of the vault cluster.
 
 ```
 export VAULT_ADDR=http://ns-1:8200
@@ -70,9 +74,6 @@ export VAULT_ADDR=http://ns-1:8200
 ```
 vault init
 ```
-
-#### Unseal Vault
-
 ```
 vault unseal
 ```
@@ -80,20 +81,10 @@ vault unseal
 vault status
 ```
 ```
-Sealed: false
-Key Shares: 5
-Key Threshold: 3
-Unseal Progress: 0
-
-High-Availability Enabled: true
-	Mode: active
-	Leader: http://10.240.0.2:8200
-```
-```
 vault auth <root-token>
 ```
 
-#### Configure the MySQL Secret Backend
+Enable and configure the MySQL secret backend.
 
 ```
 vault mount mysql
@@ -122,14 +113,9 @@ gcloud compute instances create nc-1 nc-2 nc-3 nc-4 nc-5 \
 ```
 
 ```
-nomad node-status
-```
-```
-ID        DC   Name  Class   Drain  Status
-ec906293  dc1  nc-5  <none>  false  ready
-eb73ef71  dc1  nc-2  <none>  false  ready
-a2328a47  dc1  nc-1  <none>  false  ready
-537709ec  dc1  nc-3  <none>  false  ready
-4e0a6bcb  dc1  nc-4  <none>  false  ready
+gcloud compute ssh ns-1
 ```
 
+```
+nomad node-status
+```
