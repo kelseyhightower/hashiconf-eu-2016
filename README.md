@@ -46,7 +46,7 @@ env {
 vault write secret/hashiapp jwtsecret=secret
 ```
 
-### Service Discovery with Consul
+## Service Discovery with Consul
 
 ```
 nomad run jobs/consul.nomad
@@ -74,7 +74,7 @@ nomad run jobs/fabio.nomad
 nomad status fabio
 ```
 
-### Hashiapp Job
+## Hashiapp Job
 
 Submit the hashiapp service job.
 
