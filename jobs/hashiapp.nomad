@@ -25,7 +25,7 @@ job "hashiapp" {
       artifact {
         source = "https://storage.googleapis.com/hashistack/hashiapp/v1.0.0/hashiapp"
         options {
-          checksum = "sha256:a58ee8c9eb38f2ce45edfbd71547cc66dcb68464b901fe8c89675ad2e12d2135"
+          checksum = "sha256:d2127dd0356241819e4db5407284a6d100d800ebbf37b4b2b8e9aefc97f48636"
         }
       }
 

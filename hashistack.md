@@ -153,14 +153,27 @@ gcloud compute addresses list
 ```
 
 ```
-gcloud compute forwarding-rules create hashistack \
+gcloud compute forwarding-rules create fabio \
   --ports 9999 \
   --address STATIC_EXTERNAL_IP \
   --target-pool hashistack
 ```
 
 ```
-gcloud compute firewall-rules create fabio \
+gcloud compute forwarding-rules create fabio-ui \
+  --ports 9998 \
+  --address STATIC_EXTERNAL_IP \
+  --target-pool hashistack
+```
+
+```
+gcloud compute firewall-rules create http \
+  --allow tcp:80 \
+  --source-ranges 0.0.0.0/0
+```
+
+```
+gcloud compute firewall-rules create fabio-http \
   --allow tcp:9999 \
   --source-ranges 0.0.0.0/0
 ```

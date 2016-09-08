@@ -1,0 +1,5 @@
+#!/bin/bash
+
+nomad stop fabio
+nomad stop hashiapp
+nomad stop consul

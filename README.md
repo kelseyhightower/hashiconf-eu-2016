@@ -43,10 +43,18 @@ env {
 ### Create the Hashiapp Secret
 
 ```
+vault read mysql/creds/hashiapp
+```
+
+```
 vault write secret/hashiapp jwtsecret=secret
 ```
 
 ## Service Discovery with Consul
+
+```
+nomad plan jobs/consul.nomad
+```
 
 ```
 nomad run jobs/consul.nomad
@@ -62,16 +70,6 @@ consul join nc-1 nc-2 nc-3 nc-4 nc-5
 
 ```
 consul members
-```
-
-## Load Balancing with Fabio
-
-```
-nomad run jobs/fabio.nomad
-```
-
-```
-nomad status fabio
 ```
 
 ## Hashiapp Job
@@ -93,10 +91,26 @@ nomad fs -job hashiapp alloc/logs/hashiapp.stderr.0
 nomad fs -job hashiapp alloc/logs/hashiapp.stdout.0
 ```
 
+## Load Balancing with Fabio
+
+run curl on a private intance
+
+```
+nomad run jobs/fabio.nomad
+```
+
+```
+nomad status fabio
+```
+
 #### Send Traffic
 
 ```
 curl -H "Host: hashiapp.com" http://<loadbalancer-ip>:9999/version
+```
+
+```
+while true; do curl -H "Host: hashiapp.com" http://<loadbalancer-ip>:9999/version; sleep 1; done
 ```
 
 ### Scaling Up
@@ -105,6 +119,10 @@ Edit `jobs/hashiapp.nomad`
 
 ```
 count = 5
+```
+
+```
+nomad plan jobs/hashiapp.nomad
 ```
 
 ```
@@ -118,6 +136,10 @@ Edit `jobs/hashiapp.nomad`
 ```
 source = "https://storage.googleapis.com/hashistack/hashiapp/v2.0.0/hashiapp"
 checksum = "sha256:372ddaeb9ac97a2eecd7dd3307bd32f8b0c188d47239f7ef6790609f9a157ca4"
+```
+
+```
+nomad plan jobs/hashiapp.nomad
 ```
 
 ```
