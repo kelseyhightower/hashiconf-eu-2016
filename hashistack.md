@@ -17,9 +17,15 @@ gcloud sql instances set-root-password hashiapp \
 ```
 gcloud sql instances describe hashiapp
 ```
+```
+MYSQL_IPADDRESS=$(gcloud sql instances describe hashiapp \
+  --format='value(ipAddresses[0].ipAddress)')
+```
 
 ```
-mysql -u root -h <database-ip> -p
+mysql -u root -h $MYSQL_IPADDRESS -p
+```
+```
 Enter password: 
 ```
 
@@ -34,7 +40,7 @@ This step will also install Nomad, Consul, and Vault.
 ```
 gcloud compute instances create ns-1 ns-2 ns-3 \
   --image-project ubuntu-os-cloud \
-  --image ubuntu-1604-xenial-v20160516a \
+  --image-family ubuntu-1604-lts \
   --boot-disk-size 200GB \
   --machine-type n1-standard-2 \
   --can-ip-forward \
@@ -105,7 +111,7 @@ vault write mysql/roles/hashiapp \
 ```
 gcloud compute instances create nc-1 nc-2 nc-3 nc-4 nc-5 \
   --image-project ubuntu-os-cloud \
-  --image ubuntu-1604-xenial-v20160516a \
+  --image-family ubuntu-1604-lts \
   --boot-disk-size 200GB \
   --machine-type n1-standard-2 \
   --can-ip-forward \
@@ -148,7 +154,7 @@ gcloud compute addresses list
 
 ```
 gcloud compute forwarding-rules create hashistack \
-  --port-range 9999 \
+  --ports 9999 \
   --address STATIC_EXTERNAL_IP \
   --target-pool hashistack
 ```
@@ -156,5 +162,11 @@ gcloud compute forwarding-rules create hashistack \
 ```
 gcloud compute firewall-rules create fabio \
   --allow tcp:9999 \
-  --source-range 0.0.0.0/0
+  --source-ranges 0.0.0.0/0
+```
+
+```
+gcloud compute firewall-rules create fabio-ui \
+  --allow tcp:9998 \
+  --source-ranges 0.0.0.0/0
 ```
